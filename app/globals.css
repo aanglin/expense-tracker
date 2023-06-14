@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-[#000000] text-[#d6d6d6];
+    @apply bg-[#000000] text-[#d6d6d6] relative;
   }
   button {
     @apply hover:scale-110 transition-all duration-100;
