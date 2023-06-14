@@ -37,13 +37,35 @@ const DummyData = [
 ];
 
 export default function Home() {
-  const [showModal, setShowModal] = useState(true);
+  const [showIncomeModal, setShowIncomeModal] = useState(false);
 
   return (
     <>
-      {/* Modal */}
-      <Modal showModal={showModal} setShowModal={setShowModal}>
-        <h1>Hello World</h1>
+      {/* Add Income Modal */}
+      <Modal showModal={showIncomeModal} onClose={setShowIncomeModal}>
+        <form className="flex flex-col  gap-4 ">
+          <div className="input-group">
+            <label htmlFor="amount">Income Amount</label>
+            <input
+              type="number"
+              name="amount"
+              min={0.01}
+              step={0.01}
+              placeholder="Enter Income Amount"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="description">Description</label>
+            <input
+              name="description"
+              type="text"
+              placeholder="Enter Income Description"
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">Add Entry</button>
+        </form>
       </Modal>
       <main className="container max-w-2xl px-6 mx-auto">
         <section className="py-3">
@@ -51,15 +73,17 @@ export default function Home() {
           <h2 className="text-4xl font-bold">{currencyFormatter(100000)}</h2>
         </section>
         <section className="flex items-center gap-2 py-3">
+          <button onClick={() => {}} className="btn btn-primary">
+            + Expenses
+          </button>
           <button
             onClick={() => {
-              setShowModal(true);
+              setShowIncomeModal(true);
             }}
             className="btn btn-primary"
           >
-            + Expenses
+            + Income
           </button>
-          <button className="btn btn-primary">+ Income</button>
         </section>
         {/* Expense Section */}
         <section className="py-6">
