@@ -18,4 +18,7 @@
   .btn-danger {
     @apply bg-[#D6A90A] text-white font-bold;
   }
+  .btn-primary {
+    @apply border-[#d6a90a] border text-[#d6a90a] font-bold;
+  }
 }
