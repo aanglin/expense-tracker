@@ -1,6 +1,6 @@
 import { currencyFormatter } from "@/util/format";
 
-export default function ExpenseCategoryItems({ color, title, amount }) {
+export default function ExpenseCategoryItems({ color, title, total }) {
   return (
     <button>
       <div className="flex items-center justify-between px-4 py-4 bg-gray-700 rounded-3xl">
@@ -11,7 +11,7 @@ export default function ExpenseCategoryItems({ color, title, amount }) {
           />
           <h4 className="capitalize">{title}</h4>
         </div>
-        <p>{currencyFormatter(amount)}</p>
+        <p>{currencyFormatter(total)}</p>
       </div>
     </button>
   );
