@@ -1,12 +1,15 @@
 import Modal from "@/components/Modal";
-import { useState, useContext } from "react";
+import { useState, useContext, useRef } from "react";
 import { stateHelper } from "@/lib/store/stateHelper";
 import { v4 as uuidv4 } from "uuid";
 
 export default function AddExpenses({ show, onClose }) {
   const [expenseAmount, setExpenseAmount] = useState(" ");
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const { expenses } = useContext(stateHelper);
+  const { expenses, addExpenseItem, addCategory } = useContext(stateHelper);
+  const [showNewCategory, setShowNewCategory] = useState(false);
+  const titleRef = useRef();
+  const colorRef = useRef();
 
   const addExpenseHandler = async () => {
     const expense = expenses.find((e) => {
@@ -26,12 +29,33 @@ export default function AddExpenses({ show, onClose }) {
         },
       ],
     };
+    try {
+      await addExpenseItem(selectedCategory, newExpense);
 
-    console.log(newExpense);
-    setExpenseAmount(" ");
-    setSelectedCategory(null);
-    onClose();
+      console.log(newExpense);
+      setExpenseAmount(" ");
+      setSelectedCategory(null);
+      onClose();
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
+  const addCategoryHandler = async () => {
+    const title = titleRef.current.value;
+    const color = colorRef.current.value;
+    try {
+      await addCategory({
+        title,
+        color,
+        total: 0,
+      });
+      setShowNewCategory(false);
+    }
+    catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <Modal showModal={show} onClose={onClose}>
@@ -44,15 +68,44 @@ export default function AddExpenses({ show, onClose }) {
           min={0.01}
           step={0.01}
           placeholder="Enter Expense Amount"
-            value={expenseAmount}
+          value={expenseAmount}
           onChange={(e) => setExpenseAmount(e.target.value)}
-        //   required
+          //   required
         />
       </div>
       {/* Expense Categories */}
       {expenseAmount > 0 && (
         <div className="flex flex-col gap-4 mt-6">
+          <div className="flex items-center justify-between">
             <h3 className="text-xl capitalize">Select expense Category</h3>
+            <button
+              onClick={() => {
+                setShowNewCategory(true);
+              }}
+              className="text-[#D6A90A]"
+            >
+              + New Category
+            </button>
+          </div>
+          {showNewCategory && (
+            <div className="flex items-center justify-between">
+              <input type="text" placeholder="Enter Title" ref={titleRef} />
+              <label>Pick Color</label>
+              <input type="color" className="w-24 h-10" ref={colorRef} />
+              <button onClick={addCategoryHandler} className="btn btn-primary">
+                Create
+              </button>
+              <button
+                onClick={() => {
+                  setShowNewCategory(false);
+                }}
+                className="btn btn-danger"
+              >
+                Cancel
+              </button>
+            </div>
+          )}
+
           {expenses.map((expense) => {
             return (
               <button
