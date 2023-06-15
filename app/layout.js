@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 
 import NavBar from "@/components/NavBar";
+import StateHelperProvider from "@/lib/store/stateHelper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,8 +15,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
-        {children}
+        <StateHelperProvider>
+          <NavBar />
+          {children}
+        </StateHelperProvider>
       </body>
     </html>
   );
