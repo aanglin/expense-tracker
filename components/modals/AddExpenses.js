@@ -4,7 +4,7 @@ import { stateHelper } from "@/lib/store/stateHelper";
 import { v4 as uuidv4 } from "uuid";
 
 export default function AddExpenses({ show, onClose }) {
-  const [expenseAmount, setExpenseAmount] = useState(" ");
+  const [expenseAmount, setExpenseAmount] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const { expenses, addExpenseItem, addCategory } = useContext(stateHelper);
   const [showNewCategory, setShowNewCategory] = useState(false);
@@ -33,7 +33,7 @@ export default function AddExpenses({ show, onClose }) {
       await addExpenseItem(selectedCategory, newExpense);
 
       console.log(newExpense);
-      setExpenseAmount(" ");
+      setExpenseAmount("");
       setSelectedCategory(null);
       onClose();
     } catch (error) {
