@@ -20,13 +20,6 @@ export default function Home() {
   const { expenses, income } = useContext(stateHelper);
   const { user } = useContext(authContext);
 
-  useEffect(() => {
-    if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/sw.js");
-      });
-    }
-  }, []);
 
   useEffect(() => {
     const newBalance =
