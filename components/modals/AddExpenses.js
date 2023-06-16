@@ -32,8 +32,6 @@ export default function AddExpenses({ show, onClose }) {
     };
     try {
       await addExpenseItem(selectedCategory, newExpense);
-
-      console.log(newExpense);
       setExpenseAmount("");
       setSelectedCategory(null);
       onClose();
