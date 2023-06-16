@@ -83,7 +83,7 @@ export default function AddIncomeModal({ show, onClose }) {
             <div key={i.id} className="flex justify-between items-center">
               <div>
                 <p className="font-semibold">{i.description}</p>
-                <small className="text-xs">{i.createdAt.toISOString()}</small>
+                <small className="text-xs">{i.createdAt.toLocaleDateString()}</small>
               </div>
               <p className="flex items-center gap-2">
                 {currencyFormatter(i.amount)}
