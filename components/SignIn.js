@@ -17,7 +17,7 @@ export default function SignIn() {
           />
         </div>
         <div className="px-4 py-4">
-          <h3 className="text-2xl text-center">Please sign in to continue</h3>
+          <h2 className="text-2xl text-center">Please sign in to continue</h2>
           <button
             onClick={googleLoginHandler}
             className="flex self-start gap-2 p-4 mx-auto mt-6 font-medium text-white align-middle bg-gray-700 rounded-lg "
