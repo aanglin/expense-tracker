@@ -2,6 +2,7 @@ import Modal from "@/components/Modal";
 import { useState, useContext, useRef } from "react";
 import { stateHelper } from "@/lib/store/stateHelper";
 import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
 
 export default function AddExpenses({ show, onClose }) {
   const [expenseAmount, setExpenseAmount] = useState("");
@@ -36,8 +37,10 @@ export default function AddExpenses({ show, onClose }) {
       setExpenseAmount("");
       setSelectedCategory(null);
       onClose();
+      toast.success("Expense Added");
     } catch (error) {
       console.log(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -51,11 +54,12 @@ export default function AddExpenses({ show, onClose }) {
         total: 0,
       });
       setShowNewCategory(false);
-    }
-    catch (error) {
+      toast.success("Category Added");
+    } catch (error) {
       console.log(error.message);
+      toast.error(error.message);
     }
-  }
+  };
 
   return (
     <Modal showModal={show} onClose={onClose}>

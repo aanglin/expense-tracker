@@ -1,5 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import NavBar from "@/components/NavBar";
 import StateHelperProvider from "@/lib/store/stateHelper";
@@ -18,6 +20,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <AuthContextProvider>
           <StateHelperProvider>
+            <ToastContainer />
             <NavBar />
             {children}
           </StateHelperProvider>

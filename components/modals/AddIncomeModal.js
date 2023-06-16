@@ -3,6 +3,7 @@ import { currencyFormatter } from "@/util/format";
 
 import { stateHelper } from "@/lib/store/stateHelper";
 import { authContext } from "@/lib/store/auth-context";
+import { toast } from "react-toastify";
 
 import { FaRegTrashAlt } from "react-icons/fa";
 import Modal from "@/components/Modal";
@@ -27,8 +28,10 @@ export default function AddIncomeModal({ show, onClose }) {
       await addIncomeItem(newIncome);
       descriptionRef.current.value = "";
       amountRef.current.value = "";
+      toast.success("Income Added");
     } catch (error) {
         console.log(error.message);
+        toast.error(error.message);
     }
   };
 
@@ -36,8 +39,10 @@ export default function AddIncomeModal({ show, onClose }) {
   const deleteEntryHandler = async (incomeId) => {
     try {
       await removeIncomeItem(incomeId);
+      toast.success("Income Deleted");
     } catch (error) {
       console.log(error.message);
+      toast.error(error.message);
     }
   };
 
