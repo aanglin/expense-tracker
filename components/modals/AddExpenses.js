@@ -67,14 +67,11 @@ export default function AddExpenses({ show, onClose }) {
         <label htmlFor="amount">Enter Amount</label>
         <input
           type="number"
-          // name="amount"
-          // ref={amountRef}
           min={0.01}
           step={0.01}
           placeholder="Enter Expense Amount"
           value={expenseAmount}
           onChange={(e) => setExpenseAmount(e.target.value)}
-          //   required
         />
       </div>
       {/* Expense Categories */}

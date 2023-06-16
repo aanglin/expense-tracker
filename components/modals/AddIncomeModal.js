@@ -1,4 +1,4 @@
-import { useRef, useEffect, useContext } from "react";
+import { useRef, useContext } from "react";
 import { currencyFormatter } from "@/util/format";
 
 import { stateHelper } from "@/lib/store/stateHelper";
@@ -30,8 +30,8 @@ export default function AddIncomeModal({ show, onClose }) {
       amountRef.current.value = "";
       toast.success("Income Added");
     } catch (error) {
-        console.log(error.message);
-        toast.error(error.message);
+      console.log(error.message);
+      toast.error(error.message);
     }
   };
 

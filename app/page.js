@@ -18,7 +18,7 @@ export default function Home() {
   const [showExpenseModal, setShowExpenseModal] = useState(false);
   const [balance, setBalance] = useState(0);
   const { expenses, income } = useContext(stateHelper);
-  const { user,  } = useContext(authContext);
+  const { user } = useContext(authContext);
 
   useEffect(() => {
     const newBalance =
@@ -31,9 +31,9 @@ export default function Home() {
     setBalance(newBalance);
   }, [expenses, income]);
 
-if (!user) {
-  return <SignIn />;
-}
+  if (!user) {
+    return <SignIn />;
+  }
 
   return (
     <>
