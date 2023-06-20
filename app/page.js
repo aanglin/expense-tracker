@@ -1,7 +1,7 @@
 "use client";
 import { useState, useContext, useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 import { authContext } from "@/lib/store/auth-context";
 
 import { currencyFormatter } from "@/util/format";
@@ -79,8 +79,8 @@ export default function Home() {
         {/* Chart Section */}
         <section className="py-6">
           <h3 className="text-2xl">Stats</h3>
-          <div className="w-1/2 mx-auto py-2">
-            <Doughnut
+          <div className="w-1/2 mx-auto py-3 ">
+            <Pie
               data={{
                 labels: expenses.map((expense) => expense.title),
                 datasets: [
