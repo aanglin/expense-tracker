@@ -42,61 +42,125 @@ export default function Home() {
       <AddIncomeModal show={showIncomeModal} onClose={setShowIncomeModal} />
       {/* Add Expenses Modal */}
       <AddExpensesModal show={showExpenseModal} onClose={setShowExpenseModal} />
-      <main className="container max-w-2xl px-6 mx-auto">
-        <section className="py-3">
-          <small className="text-md">My Balance</small>
-          <h2 className="text-4xl font-bold">{currencyFormatter(balance)}</h2>
-        </section>
-        <section className="flex items-center gap-2 py-3">
-          <button
-            onClick={() => {
-              setShowExpenseModal(true);
-            }}
-            className="btn btn-primary"
-          >
-            + Expenses
-          </button>
-          <button
-            onClick={() => {
-              setShowIncomeModal(true);
-            }}
-            className="btn btn-primary"
-          >
-            + Income
-          </button>
-        </section>
-        {/* Expense Section */}
-        <section className="py-6">
-          <h1 className="text-2xl">My Expenses</h1>
-          <div className="flex flex-col gap-4 mt-6">
-            {expenses.map((expense) => {
-              return (
-                <ExpenseCategoryItems key={expense.id} expense={expense} />
-              );
-            })}
-          </div>
-        </section>
-        {/* Chart Section */}
-        <section className="py-6">
-          <h3 className="text-2xl">Stats</h3>
-          <div className="w-1/2 mx-auto py-3 ">
-            <Pie
-              data={{
-                labels: expenses.map((expense) => expense.title),
-                datasets: [
-                  {
-                    label: "Expenses",
-                    data: expenses.map((expense) => expense.total),
-                    backgroundColor: expenses.map((expense) => expense.color),
-                    borderColor: expenses.map((expense) => expense.color),
-                    borderWidth: 1,
-                  },
-                ],
-              }}
-            />
-          </div>
-        </section>
-      </main>
+      <main className="container  px-6 mx-auto">
+  <section className="py-3">
+    <small className="text-md">My Balance</small>
+    <h2 className="text-4xl font-bold">{currencyFormatter(balance)}</h2>
+  </section>
+  <section className="flex items-center gap-2 py-3">
+    <button
+      onClick={() => {
+        setShowExpenseModal(true);
+      }}
+      className="btn btn-primary"
+    >
+      + Expenses
+    </button>
+    <button
+      onClick={() => {
+        setShowIncomeModal(true);
+      }}
+      className="btn btn-primary"
+    >
+      + Income
+    </button>
+  </section>
+
+  {/* Expense and Chart Sections */}
+  <div className="flex flex-col md:flex-row items-start gap-6">
+    {/* Expense Section */}
+    <section className="py-6 w-full md:w-1/2">
+      <h1 className="text-2xl">My Expenses</h1>
+      <div className="flex flex-col gap-4 mt-6">
+        {expenses.map((expense) => {
+          return (
+            <ExpenseCategoryItems key={expense.id} expense={expense} />
+          );
+        })}
+      </div>
+    </section>
+
+    {/* Chart Section */}
+    <section className="py-6 w-full  md:w-1/2 md:pl-[14rem]">
+      <h3 className="text-2xl">Stats</h3>
+      <div className="w-full  py-4">
+        <Pie
+          data={{
+            labels: expenses.map((expense) => expense.title),
+            datasets: [
+              {
+                label: "Expenses",
+                data: expenses.map((expense) => expense.total),
+                backgroundColor: expenses.map((expense) => expense.color),
+                borderColor: expenses.map((expense) => expense.color),
+                borderWidth: 1,
+              },
+            ],
+          }}
+        />
+      </div>
+    </section>
+  </div>
+</main>
+
+     
     </>
   );
 }
+
+
+//  <main className="container max-w-2xl px-6 mx-auto">
+{/* <section className="py-3">
+<small className="text-md">My Balance</small>
+<h2 className="text-4xl font-bold">{currencyFormatter(balance)}</h2>
+</section> */}
+{/* <section className="flex items-center gap-2 py-3">
+<button
+  onClick={() => {
+    setShowExpenseModal(true);
+  }}
+  className="btn btn-primary"
+>
+  + Expenses
+</button>
+<button
+  onClick={() => {
+    setShowIncomeModal(true);
+  }}
+  className="btn btn-primary"
+>
+  + Income
+</button>
+</section> */}
+{/* Expense Section */}
+{/* <section className="py-6">
+<h1 className="text-2xl">My Expenses</h1>
+<div className="flex flex-col gap-4 mt-6">
+  {expenses.map((expense) => {
+    return (
+      <ExpenseCategoryItems key={expense.id} expense={expense} />
+    );
+  })}
+</div>
+</section> */}
+{/* Chart Section */}
+{/* <section className="py-6">
+<h3 className="text-2xl">Stats</h3>
+<div className="w-1/2 mx-auto py-3 ">
+  <Pie
+    data={{
+      labels: expenses.map((expense) => expense.title),
+      datasets: [
+        {
+          label: "Expenses",
+          data: expenses.map((expense) => expense.total),
+          backgroundColor: expenses.map((expense) => expense.color),
+          borderColor: expenses.map((expense) => expense.color),
+          borderWidth: 1,
+        },
+      ],
+    }}
+  />
+</div>
+</section>
+</main> */}
