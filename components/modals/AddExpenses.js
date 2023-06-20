@@ -74,7 +74,7 @@ export default function AddExpenses({ show, onClose }) {
       </div>
       {/* Expense Categories */}
       {expenseAmount > 0 && (
-        <div className="flex flex-col gap-4 mt-6">
+        <div className="flex flex-col gap-4 mt-6 max-h-96 overflow-y-auto ">
           <div className="flex items-center justify-between">
             <h3 className="text-xl capitalize">Select expense Category</h3>
             <button
@@ -98,7 +98,7 @@ export default function AddExpenses({ show, onClose }) {
                 onClick={() => {
                   setShowNewCategory(false);
                 }}
-                className="btn btn-danger"
+                className="btn btn-danger "
               >
                 Cancel
               </button>
