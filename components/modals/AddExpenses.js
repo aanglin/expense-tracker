@@ -88,7 +88,12 @@ export default function AddExpenses({ show, onClose }) {
           </div>
           {showNewCategory && (
             <div className="flex items-center justify-between">
-              <input type="text" placeholder="Enter Title" ref={titleRef} className="w-[90%]" />
+              <input
+                type="text"
+                placeholder="Enter Title"
+                ref={titleRef}
+                className="w-[90%]"
+              />
               <label>Pick Color</label>
               <input type="color" className="w-24 h-10" ref={colorRef} />
               <button onClick={addCategoryHandler} className="btn btn-primary">
